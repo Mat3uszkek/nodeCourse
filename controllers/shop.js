@@ -44,3 +44,18 @@ exports.getCheckout = (req, res, next) => {
     path: '/checkout',
   });
 };
+
+
+exports.getProductDetails  = (req, res, next) => {
+  const prodId = req.params.id;
+
+  Product.fetchAll(products => {
+    const product = products.find(p => p.id === prodId);
+
+    res.render('shop/product-detail', {
+      product: product,
+      pageTitle: product ? product.title : 'Product Not Found',
+      path: '/product-detail/' + prodId
+    });
+  });
+};

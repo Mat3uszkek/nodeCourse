@@ -23,12 +23,25 @@ module.exports = class Product {
     this.imageUrl = imageUrl;
     this.description = description;
     this.price = price;
-    this.id = new Date().toISOString();
+    // Don't generate ID here - it will be generated in save() for new products
   }
 
   save() {
     getProductsFromFile(products => {
-      products.push(this);
+      if (this.id) {
+        // Update existing product
+        const existingProductIndex = products.findIndex(prod => prod.id === this.id);
+        if (existingProductIndex >= 0) {
+          products[existingProductIndex] = this;
+        } else {
+          // If product with this ID doesn't exist, add it as new
+          products.push(this);
+        }
+      } else {
+        // New product - generate ID and add
+        this.id = new Date().toISOString();
+        products.push(this);
+      }
       fs.writeFile(p, JSON.stringify(products), err => {
         console.log(err);
       });
@@ -42,6 +55,13 @@ module.exports = class Product {
         console.log(err);
       });
       console.log('Deleted Product with id:', id);
+    });
+  }
+
+  static getProductById(id, cb) {
+    getProductsFromFile(products => {
+      const product = products.find(p => p.id === id);
+      cb(product);
     });
   }
 

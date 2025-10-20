@@ -119,6 +119,124 @@
     border-color: rgba(0, 0, 0, 0.18);
 }
 
+/* Product Detail Page Styles */
+.product-detail {
+    display: flex;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    align-items: flex-start;
+}
+
+.product-detail__image {
+    flex: 1;
+    max-width: 500px;
+}
+
+.product-detail__image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    object-fit: cover;
+}
+
+.product-detail__info {
+    flex: 1;
+    padding: 1rem;
+}
+
+.product-detail__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+}
+
+.product-detail__description {
+    font-size: 1.1rem;
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0 0 2rem 0;
+    text-align: justify;
+}
+
+.product-detail__price {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #059669;
+    margin: 0 0 2rem 0;
+}
+
+.product-detail .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #3b82f6, #1e40af);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 200ms ease;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+    text-decoration: none;
+}
+
+.product-detail .btn:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+}
+
+.product-detail .btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design for Product Detail */
+@media (max-width: 768px) {
+    .product-detail {
+        flex-direction: column;
+        gap: 1.5rem;
+        margin: 1rem auto;
+    }
+
+    .product-detail__title {
+        font-size: 2rem;
+    }
+
+    .product-detail__description {
+        font-size: 1rem;
+    }
+
+    .product-detail__price {
+        font-size: 1.8rem;
+    }
+
+    .product-detail .btn {
+        width: 100%;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-detail {
+        padding: 0 0.5rem;
+    }
+
+    .product-detail__title {
+        font-size: 1.75rem;
+    }
+
+    .product-detail__info {
+        padding: 0.5rem;
+    }
+}
+
 /* Responsive tweaks */
 @media (max-width: 600px) {
     .grid {

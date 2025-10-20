@@ -53,29 +53,16 @@ exports.saveEditedProduct = (req, res, next) => {
   const prodId = req.params.productId;
   const { title, imageUrl, description, price } = req.body;
 
-  Product.fetchAll(products => {
-    const productIndex = products.findIndex(p => p.id === prodId);
-    if (productIndex < 0) {
+
+  Product.getProductById(prodId, (existingProduct) => {
+    if (!existingProduct) {
       return res.redirect('/admin/products');
     }
+
     const updatedProduct = new Product(title, imageUrl, description, price);
     updatedProduct.id = prodId; // retain the original id
-    products[productIndex] = updatedProduct;
 
-    const fs = require('fs');
-    const path = require('path');
-
-    const p = path.join(
-      path.dirname(process.mainModule.filename),
-      'data',
-      'products.json'
-    );
-
-    fs.writeFile(p, JSON.stringify(products), err => {
-      if (err) {
-        console.log(err);
-      }
-      res.redirect('/admin/products');
-    });
+    updatedProduct.save();
+    res.redirect('/admin/products');
   });
 };
