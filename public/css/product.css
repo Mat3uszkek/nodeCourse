@@ -23,3 +23,110 @@
 .product__description {
     text-align: center;
 }
+
+/* Layout: responsive product grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+    padding: 1rem;
+}
+
+/* Card styling */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Ensure product items fill grid cells nicely */
+.card.product-item,
+.product-item.card {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Typography inside cards */
+.card h1,
+.product-item h1 {
+    font-size: 1.05rem;
+    line-height: 1.35;
+    margin: 0;
+    padding: 1rem 1rem 0.75rem;
+    color: #222222;
+}
+
+/* Optional subtext blocks if added later */
+.product__price {
+    text-align: center;
+    color: #6b7280;
+    margin: 0 1rem 0.75rem;
+    font-weight: 600;
+}
+
+.product__description {
+    text-align: left;
+    color: #4b5563;
+    padding: 0 1rem 1rem;
+}
+
+/* Simple image treatment if images are added */
+.product-item img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+/* Subtle separators for content sections */
+.card .divider {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.06);
+    margin: 0 1rem;
+}
+
+/* Button group if actions are added */
+.card .actions {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem 1rem;
+}
+
+.card .actions .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.875rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: #f8fafc;
+    color: #111827;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 120ms ease, border-color 120ms ease;
+}
+
+.card .actions .btn:hover {
+    background: #f1f5f9;
+    border-color: rgba(0, 0, 0, 0.18);
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    .grid {
+        gap: 1rem;
+        padding: 0.75rem;
+    }
+
+    .product-item img {
+        height: 160px;
+    }
+}
