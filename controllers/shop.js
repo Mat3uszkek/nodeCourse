@@ -30,23 +30,17 @@ exports.getCart = (req, res, next) => {
 };
 
 
-exports.getCheckout = (req, res, next) => {
-  res.render('shop/checkout', {
-    pageTitle: 'Checkout',
-    path: '/checkout',
+exports.getOrders = (req, res, next) => {
+  res.render('shop/orders', {
+    pageTitle: 'Orders',
+    path: '/orders',
   });
 };
 
 
-exports.addToCart = (req, res, next) => {
-  const prodId = req.body.productId;
-  Product.fetchAll(products => {
-    const product = products.find(p => p.id === prodId);
-    if (product) {
-      // Add the product to the cart
-      req.session.cart = req.session.cart || [];
-      req.session.cart.push(product);
-    }
-    res.redirect('/cart');
+exports.getCheckout = (req, res, next) => {
+  res.render('shop/checkout', {
+    pageTitle: 'Checkout',
+    path: '/checkout',
   });
 };
