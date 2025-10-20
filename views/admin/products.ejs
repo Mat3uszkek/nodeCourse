@@ -24,6 +24,9 @@
                           <form action="/admin/delete-product/<%= product.id %>" method="POST">
                             <button class="btn">Delete</button>
                           </form>
+                          <form action="/admin/edit-product/<%= product.id %>" method="GET">
+                            <button class="btn">Edit</button>
+                          </form>
                         </div>
                     </article>
                 <% } %>

@@ -36,3 +36,17 @@ exports.getCheckout = (req, res, next) => {
     path: '/checkout',
   });
 };
+
+
+exports.addToCart = (req, res, next) => {
+  const prodId = req.body.productId;
+  Product.fetchAll(products => {
+    const product = products.find(p => p.id === prodId);
+    if (product) {
+      // Add the product to the cart
+      req.session.cart = req.session.cart || [];
+      req.session.cart.push(product);
+    }
+    res.redirect('/cart');
+  });
+};
